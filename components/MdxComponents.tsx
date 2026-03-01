@@ -1,4 +1,19 @@
 const MdxComponents = {
+  SlackBlock: ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="slack-block"
+      style={{
+        background: '#161b22',
+        border: '1px solid #30363d',
+        borderRadius: '8px',
+        padding: '1.25rem 1.5rem',
+        overflowX: 'auto',
+        marginBottom: '1.5rem',
+      }}
+    >
+      {children}
+    </div>
+  ),
   table: ({ children }: { children: React.ReactNode }) => (
     <div className="overflow-x-auto my-8">
       <table className="w-full text-sm border-collapse">{children}</table>

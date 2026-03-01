@@ -133,3 +133,19 @@ body {
 .prose strong {
   font-weight: 700;
 }
+
+/* Slack message preview block */
+.prose .slack-block p {
+  color: #e6edf3;
+  font-size: 0.875rem;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+.prose .slack-block code {
+  background: #30363d;
+  color: #e6edf3;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.875em;
+}
