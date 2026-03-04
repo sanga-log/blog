@@ -21,13 +21,6 @@ export default function Header() {
           href="/"
           className="flex items-center gap-3 hover:opacity-70 transition-opacity shrink-0"
         >
-          <Image
-            src="/profile.png"
-            alt="sanga-log logo"
-            width={36}
-            height={36}
-            className="rounded-full object-cover w-9 h-9"
-          />
           <span className="leading-tight text-sm font-black tracking-tight">
             <span className="block">sanga-log</span>
           </span>
