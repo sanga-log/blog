@@ -1,8 +1,17 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Contact — sanga-log',
-  description: 'sanga-log Contact Page',
+  title: 'Contact',
+  description: '협업, 잡담, 커피챗 등 편하게 연락해 주세요.',
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
+  openGraph: {
+    title: 'Contact',
+    description: '협업, 잡담, 커피챗 등 편하게 연락해 주세요.',
+    url: `${SITE_URL}/contact`,
+  },
 };
 
 const contacts = [

@@ -1,13 +1,23 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { getAllPosts, getAllCategories } from '@/lib/posts';
+import { SITE_URL } from '@/lib/constants';
 
 interface PageProps {
   searchParams: Promise<{ category?: string }>;
 }
 
-export const metadata = {
-  title: 'Blogs — sanga-log',
-  description: 'sanga-log Blogs Page',
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: '프론트엔드 개발, 기술 아티클, 회고를 기록합니다.',
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: 'Blog',
+    description: '프론트엔드 개발, 기술 아티클, 회고를 기록합니다.',
+    url: `${SITE_URL}/blog`,
+  },
 };
 
 export default async function BlogPage({ searchParams }: PageProps) {

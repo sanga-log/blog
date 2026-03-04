@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 
 function renderBold(text: string) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
@@ -10,8 +11,16 @@ function renderBold(text: string) {
 }
 
 export const metadata: Metadata = {
-  title: 'Resume — sanga-log',
-  description: 'sanga-log Resume Page',
+  title: 'Resume',
+  description: '프론트엔드 개발자 이상아의 이력서입니다.',
+  alternates: {
+    canonical: `${SITE_URL}/resume`,
+  },
+  openGraph: {
+    title: 'Resume',
+    description: '프론트엔드 개발자 이상아의 이력서입니다.',
+    url: `${SITE_URL}/resume`,
+  },
 };
 
 const skills = {
