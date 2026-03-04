@@ -1,6 +1,26 @@
 {
-  "name": "blog",
-  "version": "0.1.0",
+  "name": "sanga-log",
+  "version": "1.0.0",
+  "description": "Frontend Engineer Lee Sang-a's Technical Blog",
+  "author": "Lee Sang-a",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanga-log/sanga-log.git"
+  },
+  "homepage": "https://sangalog.com",
+  "keywords": [
+    "blog",
+    "frontend",
+    "developer",
+    "sanga-log",
+    "frontend engineer",
+    "technical blog"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +29,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@upstash/redis": "^1.36.3",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "16.1.6",
