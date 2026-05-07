@@ -9,6 +9,17 @@ export async function POST() {
     const today = new Date().toISOString().slice(0, 10);
     const todayKey = `visits:${today}`;
 
+    if (process.env.NODE_ENV !== "production") {
+      const [total, todayCount] = await Promise.all([
+        redis.get<number>("visits:total"),
+        redis.get<number>(todayKey),
+      ]);
+      return NextResponse.json({
+        today: todayCount ?? 0,
+        total: total ?? 0,
+      });
+    }
+
     if (!visited) {
       const pipeline = redis.pipeline();
       pipeline.incr("visits:total");

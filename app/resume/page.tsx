@@ -1,17 +1,17 @@
-import Image from 'next/image';
-import { Mail } from 'lucide-react';
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
-import { SITE_URL } from '@/lib/constants';
+import Image from "next/image";
+import { Mail, ExternalLink } from "lucide-react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata = {
-  title: 'Resume',
-  description: '프론트엔드 개발자 이상아의 이력서입니다.',
+  title: "Resume",
+  description: "프론트엔드 개발자 이상아의 이력서입니다.",
   alternates: {
     canonical: `${SITE_URL}/resume`,
   },
   openGraph: {
-    title: 'Resume',
-    description: '프론트엔드 개발자 이상아의 이력서입니다.',
+    title: "Resume",
+    description: "프론트엔드 개발자 이상아의 이력서입니다.",
     url: `${SITE_URL}/resume`,
   },
 };
@@ -29,7 +29,9 @@ function Tag({ children }: { children: React.ReactNode }) {
 }
 
 function Dot() {
-  return <span className="mt-[0.65em] w-1 h-1 rounded-full bg-black shrink-0 inline-block" />;
+  return (
+    <span className="mt-[0.65em] w-1 h-1 rounded-full bg-black shrink-0 inline-block" />
+  );
 }
 
 function CompanyIcon({ src, alt }: { src: string; alt: string }) {
@@ -50,30 +52,39 @@ function Project({
   description,
   tags,
   items,
+  first = false,
 }: {
   name: string;
   period?: string;
   description: string;
   tags: string[];
   items: React.ReactNode[];
+  first?: boolean;
 }) {
   return (
-    <div className="mt-8 pt-8 border-t border-gray-100">
+    <div className={first ? "" : "mt-10 pt-10 border-t border-gray-100"}>
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-        <p className="font-black text-sm">{name}</p>
+        <p className="font-black text-base">{name}</p>
         {period && (
-          <span className="text-xs font-bold text-gray-400 whitespace-nowrap mt-0.5">{period}</span>
+          <span className="text-xs font-bold text-gray-400 whitespace-nowrap mt-0.5">
+            {period}
+          </span>
         )}
       </div>
-      <p className="text-sm text-gray-500 mb-3 leading-relaxed">{description}</p>
+      <p className="text-sm text-gray-500 mb-3 leading-relaxed">
+        {description}
+      </p>
       <div className="flex flex-wrap gap-1.5 mb-3">
         {tags.map((t) => (
           <Tag key={t}>{t}</Tag>
         ))}
       </div>
-      <ul className="flex flex-col gap-1.5">
+      <ul className="flex flex-col gap-3">
         {items.map((item, i) => (
-          <li key={i} className="text-sm leading-relaxed text-gray-600 flex items-start gap-2">
+          <li
+            key={i}
+            className="text-sm leading-[1.75] text-gray-600 flex items-start gap-2"
+          >
             <Dot />
             <span>{item}</span>
           </li>
@@ -86,50 +97,81 @@ function Project({
 export default function ResumePage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
-
       {/* ── 헤더 ── */}
-      <section className="border-b border-black pb-12 mb-12">
-        <h1 className="text-5xl font-black tracking-tight mb-6">이상아</h1>
-        <div className="flex items-center gap-5">
-          {/* <Image
-            src="/profile.jpg"
-            alt="이상아 프로필"
-            width={64}
-            height={64}
-            className="rounded-full object-cover w-16 h-16 shrink-0"
-          /> */}
-          <div className="flex flex-col gap-1.5">
-            <p className="text-2xl font-black">Frontend Engineer</p>
-            <div className="flex gap-4 mt-3 text-gray-400">
-              <a href="mailto:comt.mix@gmail.com" aria-label="이메일" className="hover:text-black transition-colors">
-                <Mail size={18} />
-              </a>
-              <a href="https://github.com/sanga-log" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-black transition-colors">
-                <FaGithub size={18} />
-              </a>
-              <a href="https://linkedin.com/in/sanga-log" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-black transition-colors">
-                <FaLinkedinIn size={18} />
-              </a>
-            </div>
+      <section className="border-b border-black pb-12 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <div>
+            <p className="text-xs font-black tracking-widest uppercase text-gray-400 mb-3">
+              Frontend Engineer
+            </p>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-none">
+              이상아
+            </h1>
+          </div>
+          <div className="flex gap-5 text-gray-400 sm:mb-3">
+            <a
+              href="mailto:comt.mix@gmail.com"
+              aria-label="이메일"
+              className="hover:text-black transition-colors"
+            >
+              <Mail size={20} />
+            </a>
+            <a
+              href="https://github.com/sanga-log"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="hover:text-black transition-colors"
+            >
+              <FaGithub size={20} />
+            </a>
+            <a
+              href="https://linkedin.com/in/sanga-log"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="hover:text-black transition-colors"
+            >
+              <FaLinkedinIn size={20} />
+            </a>
           </div>
         </div>
       </section>
 
       {/* ── About ── */}
       <section className="mb-14">
-        <h2 className="text-xs font-black tracking-widest uppercase mb-5 text-gray-400">About</h2>
-        <p className="text-base leading-relaxed text-gray-700">
-          사용자의 불편함에 빠르게 반응하는 것을 중요하게 생각합니다.
-          같은 문제가 반복되지 않도록 구조를 고민하고,
-          손이 많이 가는 일은 자동화로 풀어내 팀이 더 중요한 일에 집중할 수 있도록 돕고 있습니다.
+        <h2 className="text-xs font-black tracking-widest uppercase mb-8 text-gray-400">
+          About
+        </h2>
+
+        {/* Hook — 통일 스타일 (정체성 + 가치 한 묶음) */}
+        <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-snug mb-8 text-black">
+          B2B 영업 7년 <span className="text-gray-300">→</span> 프론트엔드
+          개발자.
+          <br />
+          현장의 문제를 직접 코드로 풉니다.
         </p>
+
+        {/* 본문 */}
+        <div className="flex flex-col gap-4">
+          <p className="text-sm leading-relaxed text-gray-700">
+            300명 조직과 30명 조직을 모두 거치며, 팀 규모에 따라 협업 방식과
+            의사결정 속도가 어떻게 달라지는지 직접 경험했습니다.
+          </p>
+          <p className="text-sm leading-relaxed text-gray-700">
+            B2B 제품을 중심으로 B2C 서비스까지 함께 만듭니다. 반복 수작업은
+            자동화로 옮기고, 버그는 한 번 패치하기보다 같은 버그가 다시 나오지
+            않도록 구조를 바꾸는 쪽을 택합니다.
+          </p>
+        </div>
       </section>
 
       {/* ── Experience ── */}
       <section className="mb-14">
-        <h2 className="text-xs font-black tracking-widest uppercase mb-8 text-gray-400">Experience</h2>
+        <h2 className="text-xs font-black tracking-widest uppercase mb-8 text-gray-400">
+          Experience
+        </h2>
         <div className="flex flex-col gap-16">
-
           {/* ════ 김캐디 ════ */}
           <div>
             {/* 회사 헤더 */}
@@ -140,50 +182,128 @@ export default function ResumePage() {
                   <p className="font-black text-lg">주식회사 김캐디</p>
                 </div>
               </div>
-              <span className="text-xs font-bold text-gray-400 whitespace-nowrap mt-0.5">2025.06 — 현재</span>
+              <span className="text-xs font-bold text-gray-400 whitespace-nowrap mt-0.5">
+                2025.06 — 현재
+              </span>
             </div>
-            <p className="text-sm text-gray-500 ml-[52px] mb-2 leading-relaxed">
-              전국 6,000여 개 골프 시설을 비교·예약할 수 있는 골프 테크 플랫폼 (누적 200만+ 다운로드)
+            <p className="text-sm text-gray-500 ml-13 mb-6 leading-relaxed">
+              전국 6,000여 개 골프 시설을 비교·예약할 수 있는 골프 테크 플랫폼
+              (누적 200만+ 다운로드)
             </p>
 
             {/* 프로젝트 nested */}
-            <div className="pl-6 ml-[52px]">
-
+            <div className="pl-6 ml-13">
               <Project
+                first
                 name="AI Coach — AI 기반 골프 스윙 분석 데스크톱 앱"
                 period="2025.07 — 현재"
-                description="스크린골프 매장에서 실시간 스윙을 분석·코칭하는 Electron 데스크톱 앱. 프론트엔드 전담(1인)으로 초기 설계부터 운영까지 담당."
-                tags={['React', 'TypeScript', 'Electron', 'Recoil', 'WebSocket(STOMP)', 'ECharts', 'AWS S3', 'i18next']}
+                description="무인 스크린골프 매장에서 고객이 직접 실시간 스윙을 분석·코칭받는 Electron 데스크톱 앱. 프론트엔드 1인 전담으로 초기 설계부터 운영까지 책임."
+                tags={[
+                  "React",
+                  "TypeScript",
+                  "Electron",
+                  "Recoil",
+                  "WebSocket",
+                  "ECharts",
+                  "AWS",
+                  "i18next",
+                ]}
                 items={[
-                  <>&ldquo;무인 매장 사업인데, 정작 배포는 전혀 무인화가 안 됐다&rdquo;는 문제를 직접 발견하고 단계적으로 자동화를 확장: 빌드 스크립트 분리 → <code>--publish always</code>로 S3 자동 업로드 → electron-updater Silent 설치로 매장 방문 제거 → MAC Address 기반 서버 API 조회로 매장·룸·영상 경로 설정까지 자동화. <B>새 매장 추가 95% 단축</B>(1시간 → 3분)</>,
-                  <>STOMP 장시간 연결 에러 원인을 &ldquo;클라이언트가 오래된 세션을 재사용&rdquo;으로 진단하고 <B>서버 세션을 source of truth</B>로 재설계. 나노초 단위 타임스탬프 커스텀 파서로 비동기 메시지 정렬 문제까지 해결 — 장시간 사용 에러 0건 달성</>,
-                  <>스윙 영상 3개 업로드 중 AI 피드백이 비동기로 도착해 순서가 꼬이는 문제를 <B>메시지 버퍼링 큐 아키텍처</B>로 해결. 새로고침 시 기존 메시지가 재수신되며 순서가 뒤섞이는 문제도 <code>pageLoadTime</code> 기반 초기 로드 감지 + <code>sessionStorage</code> 재생 이력 추적으로 동시 해결</>,
-                  <>무인 매장 특성상 터미널 접근이 불가능한 환경에서 원격 디버깅 수단이 없다는 문제를 인식, electron-log 기반 <B>프로덕션 로깅 인프라</B>를 구축. 실행 파일 옆 로그 파일 자동 생성으로 현장 방문 없이 문제 재현·원인 파악 가능한 구조 확립</>,
-                  <>619줄짜리 모놀리식 <code>electron.js</code>를 <code>ipc/</code>·<code>utils/</code>·<code>constants.js</code>로 분리하고 <B>Facade 패턴</B>으로 IPC 핸들러를 일괄 등록. 윈도우 크기·URL·패딩 등 매직 넘버를 <code>constants.js</code>로 중앙화하여 변경 포인트를 단일화</>,
+                  <>
+                    &ldquo;무인 매장에서 사용하는 서비스인데, 빌드·배포·운영
+                    관측이 수작업에 의존한다&rdquo;고 판단하여 단계적으로
+                    자동화를 확장: 빌드 스크립트 분리 →{" "}
+                    <code>--publish always</code>로 S3 자동 업로드 →
+                    electron-updater Silent 설치 → 사전 등록된 MAC Address 기반
+                    서버 API 조회로 매장·룸·경로 설정까지 자동화 —{" "}
+                    <B>매장 설치·업데이트 현장 방문 제거</B>
+                  </>,
+                  <>
+                    WebSocket으로 비동기 도착하는 AI 피드백의 순서가 꼬이는
+                    문제를, <code>useRef</code> 버퍼링 큐 + ISO timestamp 나노초
+                    정렬로 해결. 새로고침 시 재수신 메시지로 TTS가 재생되는
+                    부작용은 모듈 스코프 <code>pageLoadTime</code> 윈도우 +{" "}
+                    <code>sessionStorage</code> 재생 이력{" "}
+                    <B>두 게이트 AND</B>로 차단
+                  </>,
+                  <>
+                    AI 피드백에 사용자 기기 화면 컨텍스트(타석·샷 정보)가 빠져
+                    정확도 한계가 있던 문제를, Electron{" "}
+                    <code>desktopCapturer</code>로 메인 프로세스에서 화면을
+                    캡처해 IPC → FormData 첨부 파이프라인으로 해결.{" "}
+                    <B>
+                      &ldquo;선택 데이터(스크린샷) 실패가 필수 데이터(영상)
+                      전송을 막아선 안 된다&rdquo;
+                    </B>
+                    는 원칙으로 <code>captureScreenSafe()</code> 래퍼에서 실패
+                    시 <code>null</code> 반환으로 격리
+                  </>,
+                  <>
+                    다국어 적용을 정적 텍스트 치환에서 끝내지 않고,{" "}
+                    <code>languageTypeCd</code>를 서버에 동행시켜{" "}
+                    <B>AI 코칭 응답·TTS 음성까지 다국어 동기화</B>. 코칭 도중
+                    언어 변경 시 이전 언어 음성이 TTS 큐에 남아 잘못 재생되던
+                    문제를 발견, 언어 변경 직전 <code>stopCurrentTTS()</code>·
+                    <code>resetTTSSession()</code> 강제 호출 + 변경 가능 시점을
+                    메인 진입 모달로 제한하는 UX 정책으로 해결
+                  </>,
+                  <>
+                    <code>contextIsolation: false</code>로 인한 XSS 위험을
+                    인지하고 <code>contextBridge</code> 기반 최소 권한 API 노출
+                    구조로 재설계. 6개 렌더러 파일에 복붙되어 있던 타입
+                    선언/초기화 블록을 <code>electron.d.ts</code>로 통합하고
+                    23곳의 <code>ipcRenderer</code> 호출을 새 API로 일괄 전환 —{" "}
+                    <B>중복 setup 코드 73줄 → 22줄 (70%↓)</B>
+                  </>,
                 ]}
               />
 
               <Project
                 name="Kaddie Web — 글로벌 골프장 예약 B2C 웹 서비스"
                 period="2025.09 — 현재"
-                description="김캐디의 해외 골프장 예약 웹. 초기 아키텍처 설계부터 전 기능 개발·런칭까지 전담 (187 commits, 전체의 47.5%). 회사 최초 해외 매출 달성."
-                tags={['React', 'TypeScript', 'Recoil', 'Stripe', 'Docker', 'Nginx', 'AWS ECR/ECS']}
-                items={[
-                  <>매장마다 다른 요일별 운영시간·게임 소요시간·룸 구성을 모두 프론트엔드에서 검증해야 하는 부킹 시스템을 설계. 자정 넘김 보정, 플레이타임 역산 마감 차단, 분 슬롯→정각 상향 전파 등 <B>복합 조건의 예약 충돌 검증 로직</B>을 구현하여 잘못된 예약 생성을 시스템 레벨에서 원천 차단</>,
-                  <>Stripe Webhook 비동기 처리 + 자체 DB 반영 지연으로 결제 직후 상세 내역을 즉시 표시할 수 없는 문제를 인식. 결제 완료 화면에서 서버 상태를 <B>폴링(5초 → 1초 최적화)</B>하며 Stripe↔서버 간 eventual consistency를 UX로 자연스럽게 흡수하고, debounce로 결제 버튼 중복 클릭에 의한 이중 과금을 원천 차단</>,
-                  <>Google Sheets 기반 <B>번역 자동 빌드 파이프라인</B> + AWS Secrets Manager 기반 시크릿 관리 도입으로 다국어·환경 설정 자동화</>,
+                description="김캐디의 해외 스크린 골프 및 연습장 예약 웹. 초기 아키텍처 설계부터 핵심 기능 개발·런칭 주도. 회사 최초 해외 매출 달성."
+                tags={[
+                  "React",
+                  "TypeScript",
+                  "Recoil",
+                  "Stripe",
+                  "Docker",
+                  "Nginx",
+                  "AWS ECR/ECS",
                 ]}
-              />
-
-              <Project
-                name="김캐디 앱 — AI 코칭 모바일 웹뷰"
-                period="2025.07 — 현재"
-                description="앱에서 AI 코칭 결과를 확인하고 참여할 수 있는 Next.js 기반 모바일 웹뷰. AI 코칭 도메인 프론트엔드 전담."
-                tags={['Next.js', 'React', 'TypeScript', 'React Query', 'Recoil', 'STOMP(WebSocket)', 'HLS.js', 'MediaRecorder API']}
                 items={[
-                  <>키오스크(하드웨어)와 모바일 웹을 실시간 동기화하는 양방향 통신 설계. 스윙 영상 업로드 중 AI 응답이 동시 도착해 UI가 불안정해지는 문제를 <B>메시지 버퍼링 큐 아키텍처</B>로 해결</>,
-                  <>외부 STT 라이브러리의 Web Worker 호환성 문제를 진단하고 네이티브 <B>MediaRecorder API</B>로 전환 — 269줄의 불필요한 의존성 제거, 상태머신 패턴의 <code>useSTT</code>로 중복 호출 버그 근본 해결</>,
-                  <>Android/iOS 네이티브 브릿지 인터페이스(<code>AiBridge</code>) 설계, 백엔드·네이티브·키오스크 팀과 WebSocket 프로토콜 및 API 스펙 협의·통합</>,
+                  <>
+                    매장마다 다른 요일별 운영시간·게임 소요시간·룸 구성을 모두
+                    프론트엔드에서 검증해야 하는 부킹 시스템을 설계. 자정 넘김
+                    보정, 플레이타임 역산 마감 차단, 분 슬롯→정각 상향 전파 등{" "}
+                    <B>복합 조건의 예약 충돌 검증 로직</B>을 구현하여 잘못된
+                    예약 생성을 시스템 레벨에서 원천 차단
+                  </>,
+                  <>
+                    Stripe Webhook 비동기 처리로 결제 직후 서버 상태가 즉시
+                    반영되지 않는 문제를 인지. 결제 완료 화면에서 N회 재시도 +
+                    타임아웃 시 실패 화면 fallback이 있는 폴링으로 eventual
+                    consistency를 UX 레이어에서 흡수.{" "}
+                    <code>isSubmitting</code>(API 호출 중) /{" "}
+                    <code>isProcessing</code>(폴링 중) <B>이중 상태 가드</B>로
+                    폴링 중 중복 결제 차단
+                  </>,
+                  <>
+                    JS 부동소수점 누적 오차로 미국 매장 결제에{" "}
+                    <B>1센트 단위 오차</B>가 발생하던 이슈를 발견,{" "}
+                    <code>(amount/100).toFixed(2)</code> 정규화 후 정수 단위로
+                    백엔드 전송하는 컨벤션으로 통일. 매장{" "}
+                    <code>currencyConfig</code> 기반 통화 동적 표시까지 포함해
+                    다국가 결제 정합성 확보
+                  </>,
+                  <>
+                    비개발자가 Google Sheets만 수정하면 빌드 시 6개 언어 locale
+                    JSON으로 자동 동기화되는 prebuild 파이프라인 구축. MD5 해시
+                    캐싱으로 변경 키만 부분 갱신, 누락 키는 default 언어
+                    fallback. 의존성으로 따라온 Service Account 키 운반 문제는{" "}
+                    <B>AWS Secrets Manager로 일원화</B>해 시크릿 채널을 인프라
+                    표준으로 통합
+                  </>,
                 ]}
               />
 
@@ -191,24 +311,84 @@ export default function ResumePage() {
                 name="사장님 솔루션 — 스크린골프 매장 B2B SaaS"
                 period="2025.07 — 현재"
                 description="골프 매장 사장님을 위한 B2B SaaS. PC + 모바일 프론트엔드 개발 담당. 국내 890개 매장 운영 지원."
-                tags={['React', 'TypeScript', 'Electron', 'Recoil', 'MUI 5', 'Socket.IO', 'React Hook Form']}
+                tags={[
+                  "React",
+                  "TypeScript",
+                  "Electron",
+                  "Recoil",
+                  "MUI 5",
+                  "Socket.IO",
+                  "React Hook Form",
+                  "Zod",
+                ]}
                 items={[
-                  <>모바일 화면 전체를 새로운 <B>디자인 시스템 10종</B>(Badge, BottomSheet, Button, Card 등)으로 주도적 구축·적용하여 UI 전면 개편</>,
+                  <>
+                    <code>weekday</code> 필드가 실제 요일이 아닌 카테고리
+                    코드(&ldquo;1&rdquo;=평일, &ldquo;2&rdquo;=공휴일,
+                    &ldquo;4&rdquo;=포썸)로 쓰이던 레거시 구조 변경을 백엔드
+                    개발자에게 제안하고 <code>price_category_cd</code> 필드 추가
+                    협의. 기존 데이터 호환성을 위해 &ldquo;새 필드가 있으면
+                    사용, 없으면 기존 필드 매핑&rdquo; 폴백 전략을 도입하여{" "}
+                    <B>빅뱅 마이그레이션 없이 점진적 전환 기반 마련</B>.
+                    상수·그룹핑·라벨·폴백을 단일 파일로 응집시켜 도메인 의미와
+                    코드 구조를 일치시킴
+                  </>,
+                  <>
+                    React Router v5 환경에서 페이지 이탈 방지 기능을 구현하며,
+                    <B>
+                      &ldquo;리렌더링이 필요한 상태&rdquo;와 &ldquo;참조만 필요한
+                      상태&rdquo;를 분리
+                    </B>
+                    하는 원칙으로 <code>useState</code>/<code>useRef</code>{" "}
+                    배치. 팝업 표시만 <code>useState</code>로, 이동 경로·block
+                    해제 함수는 <code>useRef</code>로 관리
+                  </>,
+                  <>
+                    가격 제출 검증이 최종 단계에 몰려 사용자가 전 과정을 거친
+                    뒤에야 에러를 만나는 구조를,{" "}
+                    <B>&ldquo;가장 먼저 알 수 있는 시점에서 차단&rdquo;</B>{" "}
+                    원칙으로 재설계. 추가·수정·삭제 진입 시 검수중 상태 즉시
+                    차단, 폼 저장 시 <code>useRef</code> 스냅샷 비교로 변경 없음
+                    사전 감지. 이 과정에서 stale state 참조 버그를 발견하고 함수
+                    인자 직접 전달 방식으로 수정
+                  </>,
+                  <>
+                    외부 폼(JotForm)으로 운영하던 매장 양도양수 신청을
+                    react-hook-form + zod 기반 자체 React 페이지로 전환.
+                    양도인/양수인 역할별 필수 필드 차이를 schema 두 벌로 나누지
+                    않고 zod <code>superRefine</code>으로 한 schema 안에서 분기.{" "}
+                    <code>trigger</code>로 현재 step 필드만 검증 + 양도인·양수인
+                    전화번호 중복 같은 필드 간 검증은 <code>setError</code>로
+                    &ldquo;다음&rdquo; 클릭 시점에 즉시 노출하는{" "}
+                    <B>다단계 검증 구조</B>로 설계
+                  </>,
                 ]}
               />
 
               {/* 전사 업무 자동화 */}
               <Project
                 name="전사 업무 자동화"
-                description="반복되는 비효율을 발견하면 자동화로 해결. AI 기반 워크플로우를 팀 전체에 전파."
+                description="현장에서 마주친 반복 작업을 자동화로 옮기고, 동료가 그대로 가져다 쓸 수 있게 사내 가이드·블로그로 공유."
                 tags={[]}
                 items={[
-                  <>주간 배포 요약 슬랙 자동화 — GitHub 각 레포 PR을 자동 수집·요약해 전사 슬랙 채널에 발행, 비개발자도 배포 내역 즉시 파악 가능</>,
-                  <>SVG 도면 변환 자동화 — 골프장 매장 도면 room_id 매핑 수동 작업(1시간+)을 수 분으로 단축, 디자이너 단독 실행 가능한 구조로 전환</>,
-                  <>영업 지원용 Google Sheets 자동 적재 (Apps Script)</>,
+                  <>
+                    주간 배포 요약 슬랙 자동화 — GitHub 각 레포 PR을 자동
+                    수집·요약해 전사 슬랙 채널에 발행, 비개발자도 배포 내역 즉시
+                    파악 가능
+                  </>,
+                  <>
+                    SVG 도면 변환 자동화 — 골프장 매장 도면 room_id 매핑 수동
+                    작업(1시간+)을 수 분으로 단축, 디자이너 단독 실행 가능한
+                    구조로 전환
+                  </>,
+                  <>
+                    영업팀이 사이트 배너·입력폼 접수 알림을 슬랙에서만 받아
+                    검색·관리가 어렵던 구조를, Apps Script로 Google Sheets에
+                    자동 적재 —{" "}
+                    <B>리드를 날짜별 분류·필터링·담당자 지정으로 관리</B>
+                  </>,
                 ]}
               />
-
             </div>
           </div>
 
@@ -217,29 +397,49 @@ export default function ResumePage() {
             {/* 회사 헤더 */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
               <div className="flex items-center gap-3">
-                <CompanyIcon src="/smartscore-logo.png" alt="스마트스코어 로고" />
+                <CompanyIcon
+                  src="/smartscore-logo.png"
+                  alt="스마트스코어 로고"
+                />
                 <div>
                   <p className="font-black text-lg">주식회사 스마트스코어</p>
                 </div>
               </div>
-              <span className="text-xs font-bold text-gray-400 whitespace-nowrap mt-0.5">2023.04 — 2025.06</span>
+              <span className="text-xs font-bold text-gray-400 whitespace-nowrap mt-0.5">
+                2023.04 — 2025.06
+              </span>
             </div>
-            <p className="text-sm text-gray-500 ml-[52px] mb-2 leading-relaxed">
+            <p className="text-sm text-gray-500 ml-13 mb-6 leading-relaxed">
               360만+ 골퍼가 사용하는 국내 1위 골프 O2O 플랫폼
             </p>
 
             {/* 프로젝트 nested */}
-            <div className="pl-6 ml-[52px]">
-
+            <div className="pl-6 ml-13">
               <Project
+                first
                 name="국내외 공식 웹사이트"
                 period="2023.08 — 2025.03"
                 description="스마트스코어 국내 및 해외 공식 웹사이트 구축. 6개국 다국어 지원."
-                tags={['Vue3', 'TypeScript', 'Vite', 'i18n', 'Zod', 'Unhead']}
+                tags={["Vue3", "TypeScript", "Vite", "i18n", "Zod", "Unhead"]}
                 items={[
-                  <>이미지 WebP 전환 + preload·fetchpriority 적용 — <B>LCP 6.6s → 0.9s (86%↓)</B>, CLS 0.737 → 0 (100%↓)</>,
-                  <>Zod 스키마 기반 유효성 검증 재설계, SEO 최적화(사이트맵·robots.txt·Schema.org) — <B>Lighthouse SEO 83 → 92점</B></>,
-                  <>기기별 맞춤 번역 플러그인 자체 개발 — 윈도우 리사이즈 이벤트로 디바이스 타입 감지, 반응형 레이아웃 깨짐 문제 해결</>,
+                  <>
+                    이미지 WebP 전환 + preload·fetchpriority 적용 —{" "}
+                    <B>LCP 6.6s → 0.9s (86%↓)</B>, CLS 0.737 → 0
+                  </>,
+                  <>
+                    신규 도메인 이전(<code>smartscore.kr</code> →{" "}
+                    <code>smartscore.global/kr/</code>) 시 검색 색인 리셋 위험을
+                    인지하고, 사이트맵·robots.txt·Schema.org + Unhead 기반
+                    라우터 통합 메타데이터 관리로 SEO 세팅 —{" "}
+                    <B>Lighthouse SEO 83 → 92점</B>
+                  </>,
+                  <>
+                    폼 검증을 위해 vee-validate·vuelidate 같은 풀 폼 라이브러리
+                    도입 대신, <B>검증 로직만 Zod로 분리</B>하는 선택. 필드별로
+                    흩어져 있던 정규표현식을 단일 스키마로 응집하고,{" "}
+                    <code>isSubmitted</code> 상태로 첫 진입 에러 숨김 + 제출 후
+                    실시간 검증 UX 적용
+                  </>,
                 ]}
               />
 
@@ -247,10 +447,17 @@ export default function ResumePage() {
                 name="클럽 페이지 — 골프장 운영 데이터 대시보드"
                 period="2024.03 — 2024.06"
                 description="골프장 운영자를 위한 내장객 분석 및 매장 운영 지표 시각화 대시보드."
-                tags={['Vue3', 'Pinia', 'Highcharts', 'Vite']}
+                tags={["Vue3", "Pinia", "Highcharts", "Vite"]}
                 items={[
-                  <>Highcharts 기반 유저 통계 시각화 차트 및 사용자별 맞춤형 필터 개발</>,
-                  <>Intersection Observer API — Viewport 진입 차트만 호출하도록 최적화, <B>TBT 약 90% 단축</B></>,
+                  <>
+                    8개 차트 동시 호출로 초기 로드가 30초까지 걸리던 문제를,{" "}
+                    <B>백엔드와 병목 API 분리·캐싱 협업</B>으로 1차 단축
+                  </>,
+                  <>
+                    차트 동시 렌더링으로 길어지던 메인 스레드 블로킹은
+                    Intersection Observer 기반 lazy loading으로 해결 —{" "}
+                    <B>TBT 3,180ms → 320ms (90%↓)</B>
+                  </>,
                 ]}
               />
 
@@ -258,75 +465,44 @@ export default function ResumePage() {
                 name="모바일 네트워크 광고 시스템"
                 period="2024.12 — 2025.02"
                 description="사내 최초 모바일 네트워크 광고 시스템 기획부터 도입. 여러 프로젝트에 재사용 가능한 공통 모듈로 설계."
-                tags={['Vue2', 'Webpack']}
+                tags={["Vue2", "Webpack"]}
                 items={[
-                  <>Preload 기법으로 load·open 함수 호출 분리 — <B>광고 로딩 시간 60% 단축</B>, 연속 재생 UX 구현</>,
-                  <>공통 Mixin 모듈 설계 — OS·Placement ID 상수화, 프로젝트 간 일관된 광고 호출 구조화</>,
+                  <>
+                    광고 호출 시 라이브러리 로딩으로 노출이 지연되고, load·open
+                    동시 호출 시 페이지 이탈하면 다른 페이지에서 광고가 뜨는
+                    race도 발생하던 구조를, 사용자 흐름에 따라{" "}
+                    <B>
+                      <code>preload</code> / <code>load</code> /{" "}
+                      <code>open</code> 3단계로 분리
+                    </B>{" "}
+                    + <code>RepeatableLoad</code> 옵션으로 Open/Close 후 자동
+                    재 Load — 모든 흐름에서 끊김 없이 즉시 노출
+                  </>,
+                  <>
+                    <B>
+                      4가지 광고 타입(InterstitialImage / InterstitialVideo /
+                      RewardVideo / BottomModal)
+                    </B>
+                    을 통합 처리하는 공통 Mixin 모듈 설계 — OS·Placement ID
+                    상수화, 각 타입별 콜백 액션 매핑(<code>RewardVideo</code>는
+                    영상 시청 완료 여부 <code>status: completed/skipped</code>{" "}
+                    분기), <code>idx</code>만으로 광고 호출 가능한 구조로 일원화
+                  </>,
+                  <>
+                    포인트 전환 버튼이 클릭마다 포인트 차감되는 흐름에서,
+                    5회/10회 진입 시 5초 전면 비디오 광고 트리거. 광고
+                    로딩(4~10초) + 재생(5초) 동안 추가 클릭으로 포인트만 계속
+                    차감되던 문제를,{" "}
+                    <B>
+                      광고 호출 시 카운팅 플래그를 false로 잠그고{" "}
+                      <code>OnInterstitialVideoAdClosed</code> 콜백에서 true로
+                      복귀
+                    </B>
+                    하는 가드로 해결
+                  </>,
                 ]}
               />
 
-              <Project
-                name="골프 매거진 코리아 — KB카드 전용 결제 페이지"
-                period="2024.06"
-                description="KB카드 전용 결제 기능 추가 및 기존 Vue2 결제 페이지 React 마이그레이션."
-                tags={['React', 'TypeScript', 'Vite', 'Vue2', 'Webpack']}
-                items={[
-                  <>사내 스터디에서 학습한 React를 실무 최초 적용 — Vue2 기반 결제 페이지를 <B>React + TypeScript로 마이그레이션</B>, API 응답 타입 안정성 확보로 런타임 에러 사전 예방</>,
-                ]}
-              />
-
-              <Project
-                name="골프 커뮤니티 — 게시글 및 댓글 시스템"
-                period="2023.11 — 2023.12"
-                description="앱 내 사용자 참여 활성화를 위한 게시글·댓글 시스템 최초 구현."
-                tags={['Vue2', 'Vuex', 'Webpack']}
-                items={[
-                  <><B>Optimistic Update</B> 적용 — 서버 응답 전 UI 즉시 반영으로 네트워크 지연 UX 개선</>,
-                  <>Webpack 동적 import + webpackChunkName <B>코드 스플리팅</B> — 초기 번들 크기 절감</>,
-                  <>Android 웹뷰 키패드 하단 공백 이슈 해결 — User-Agent 감지로 Android 환경에서만 bottom 영역 0 처리</>,
-                ]}
-              />
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── Skills ── */}
-      <section className="mb-14">
-        <h2 className="text-xs font-black tracking-widest uppercase mb-8 text-gray-400">Skills</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <p className="text-xs font-black tracking-widest uppercase mb-3 text-gray-400">프레임워크</p>
-            <div className="flex flex-wrap gap-2">
-              {['React', 'Next.js', 'Electron.js', 'Vue3', 'Vue2'].map((s) => (
-                <span key={s} className="text-sm font-bold border border-black px-3 py-1">{s}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-xs font-black tracking-widest uppercase mb-3 text-gray-400">언어 & 도구</p>
-            <div className="flex flex-wrap gap-2">
-              {['TypeScript', 'JavaScript', 'Git'].map((s) => (
-                <span key={s} className="text-sm font-bold border border-black px-3 py-1">{s}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-xs font-black tracking-widest uppercase mb-3 text-gray-400">상태관리</p>
-            <div className="flex flex-wrap gap-2">
-              {['Recoil', 'TanStack Query', 'Vuex', 'Pinia'].map((s) => (
-                <span key={s} className="text-sm font-bold border border-black px-3 py-1">{s}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-xs font-black tracking-widest uppercase mb-3 text-gray-400">빌드 & 기타</p>
-            <div className="flex flex-wrap gap-2">
-              {['Vite', 'Webpack', 'Docker', 'AWS', 'i18n', 'Zod', 'Stripe', 'Electron Builder'].map((s) => (
-                <span key={s} className="text-sm font-bold border border-black px-3 py-1">{s}</span>
-              ))}
             </div>
           </div>
         </div>
@@ -334,19 +510,59 @@ export default function ResumePage() {
 
       {/* ── Activities ── */}
       <section>
-        <h2 className="text-xs font-black tracking-widest uppercase mb-8 text-gray-400">Activities</h2>
+        <h2 className="text-xs font-black tracking-widest uppercase mb-8 text-gray-400">
+          Activities
+        </h2>
         <div className="flex flex-col gap-6">
           <div className="border-l-2 border-black pl-6">
             <p className="font-black text-base">MDN 공식문서 한글 번역 기여</p>
-            <p className="text-sm text-gray-500 mt-1">MDN Web Docs 한국어 번역 프로젝트 참여</p>
+            <p className="text-sm text-gray-500 mt-1">
+              MDN Web Docs 한국어 번역 프로젝트 참여
+            </p>
+            <a
+              href="https://github.com/mdn/translated-content/pull/18975"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="MDN 번역 기여 PR #18975 보기 (새 탭)"
+              className="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-gray-400 hover:text-black transition-colors"
+            >
+              <FaGithub size={12} />
+              <span>PR #18975 보기</span>
+            </a>
           </div>
           <div className="border-l-2 border-black pl-6">
-            <p className="font-black text-base">AI 개발 워크플로우 자동화 — 팀 블로그 기고</p>
-            <p className="text-sm text-gray-500 mt-1">SVG 도면 변환 자동화, GitHub PR 요약 슬랙 봇 제작 과정을 김캐디 팀 블로그에 공유</p>
+            <p className="font-black text-base">
+              AI 개발 워크플로우 자동화 — 팀 블로그 기고
+            </p>
+            <p className="text-sm text-gray-500 mt-1">
+              SVG 도면 변환 자동화, GitHub PR 요약 슬랙 봇 제작 과정을 김캐디 팀
+              블로그에 공유
+            </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-2 mt-2">
+              <a
+                href="https://blog.kimcaddie.com/start-claude-skill"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="SVG 도면 변환 자동화 글 보기 (새 탭)"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-400 hover:text-black transition-colors"
+              >
+                <ExternalLink size={12} />
+                <span>SVG 도면 변환 자동화</span>
+              </a>
+              <a
+                href="https://blog.kimcaddie.com/slack-autobot-skill"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub PR 요약 슬랙 봇 글 보기 (새 탭)"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-400 hover:text-black transition-colors"
+              >
+                <ExternalLink size={12} />
+                <span>슬랙 PR 요약 봇</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
