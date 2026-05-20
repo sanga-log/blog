@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import HeroThronglet from "@/components/HeroThronglet";
 
 export default function Home() {
-  redirect('/blog');
+  return <HeroThronglet />;
 }
