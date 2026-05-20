@@ -164,12 +164,13 @@ export default function ResumePage() {
 
         {/* About — 설명글 톤, 프로젝트 본문과 위계 맞춤 */}
         <p className="text-[15px] sm:text-[17px] leading-relaxed text-gray-800">
-          B2B와 B2C 제품을 함께 만들어왔습니다. 30명·300명 조직을 모두 거치며{" "}
+           300명 규모 조직과 30명 규모 조직을 거치며 B2B·B2C 제품을
+          만들어왔습니다. 그 과정에서{" "}
           <strong className="font-bold text-black">
-            빠른 패치보다 같은 일을 두 번 하지 않게 만드는 쪽
+            빠른 패치보다 같은 일을 두 번 하지 않게 만드는 것
           </strong>
-          을 택해왔습니다. 반복 수작업은 자동화로 옮기고, 버그가 재발하지 않게
-          구조부터 바꿉니다.
+          의 중요성을 체감했습니다. 반복되는 수작업은 자동화로 옮기고, 버그가
+          재발하지 않게 구조부터 바꿀 방법을 고민합니다.
         </p>
       </section>
 
@@ -194,8 +195,8 @@ export default function ResumePage() {
               </span>
             </div>
             <p className="text-sm text-gray-500 ml-13 mb-6 leading-relaxed">
-              국내 최대 실내 골프 마켓플레이스. 무인 매장 170개+ 운영, 12,000여
-              골프 시설 예약 지원 (누적 200만+ 다운로드)
+              국내 최대 실내 골프 마켓플레이스 — 무인 매장 170개+ 운영 · 12,000여
+              골프 시설 예약 지원 · 누적 200만+ 다운로드
             </p>
 
             {/* 프로젝트 nested */}
@@ -271,7 +272,7 @@ export default function ResumePage() {
               <Project
                 name="Kaddie Web — 글로벌 골프장 예약 B2C 웹 서비스"
                 period="2025.09 — 현재"
-                description="김캐디의 해외 스크린 골프 및 연습장 예약 웹. 부킹 시스템·결제 결과 폴링·다국어 prebuild 파이프라인 등 핵심 기능 구현. 회사 최초 해외 매장(미국 Dallas Royal Golf Zone) 진출 시 동반 도입."
+                description="김캐디의 해외 스크린 골프 및 연습장 예약 웹. 회사 최초 해외 매출을 만든 서비스로, 태국·필리핀·미국 매장에서 운영 중."
                 tags={[
                   "React",
                   "TypeScript",
@@ -316,7 +317,7 @@ export default function ResumePage() {
               <Project
                 name="사장님 솔루션 — 스크린골프 매장 B2B SaaS"
                 period="2025.07 — 현재"
-                description="골프 매장 사장님을 위한 B2B SaaS. PC + 모바일 프론트엔드 개발 담당. 국내 890개 매장 운영 지원."
+                description="골프 매장 사장님을 위한 B2B SaaS. PC + 모바일 프론트엔드 개발 담당. 국내 900개+ 매장이 구독 중."
                 tags={[
                   "React",
                   "TypeScript",
