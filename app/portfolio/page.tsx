@@ -33,7 +33,7 @@ interface Project {
 const projects: Project[] = [
   {
     slug: "ai-coach",
-    name: "AI Coach — AI 기반 스윙 분석 데스크톱 앱",
+    name: "AI Coach — AI 기반 골프 스윙 분석 데스크톱 앱",
     company: "김캐디",
     period: "2025.07 — 현재",
     summary:
@@ -43,11 +43,11 @@ const projects: Project[] = [
   },
   {
     slug: "kaddie-web",
-    name: "Kaddie Web — 글로벌 골프장 예약 B2C 웹",
+    name: "Kaddie Web — 글로벌 골프장 예약 B2C 웹 서비스",
     company: "김캐디",
     period: "2025.09 — 현재",
     summary:
-      "해외 스크린골프·연습장 예약 웹 서비스. 부킹 시스템·결제 결과 폴링·다국어 prebuild 파이프라인 등 핵심 기능 구현. 회사 최초 해외 매장(미국 Dallas Royal Golf Zone) 진출 시 동반 도입.",
+      "해외 스크린골프·연습장 예약 웹. 회사 최초 해외 매출을 만든 서비스로, 태국·필리핀·미국 매장에서 운영 중.",
     tags: ["React", "TypeScript", "Stripe", "Docker", "AWS ECS"],
     video: "/videos/kaddie.mp4",
   },

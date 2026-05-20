@@ -58,7 +58,6 @@ export default function AICoachPortfolioPage() {
           items={[
             "김캐디(무인 매장 170개+ / 누적 200만+ 다운로드)의 AI 코칭 솔루션",
             "시뮬레이터 3사(GTS · Nvisage · K-Golf) 본사 + 회사 직영 0753Golf + GTS 일본 수출 = 5개 테스트 매장 전체 가동 중",
-            "매장 내 다실 구조는 우선 1개 룸에서 운영",
           ]}
         />
       </section>
@@ -95,11 +94,10 @@ export default function AICoachPortfolioPage() {
           body={
             <>
               무인 스크린골프 매장 Electron 앱인데 빌드·S3 업로드·환경설정·로그
-              확인이 모두 수작업. 매장 추가마다 JSON 수정 → 재빌드 → 재배포
-              → 현장 방문 사이클이 반복.{" "}
+              확인이 모두 수작업. 매장 추가마다 JSON 수정 → 재빌드 → 재배포 →
+              현장 방문 사이클이 반복.{" "}
               <B>
-                &ldquo;무인화 매장인데 운영 사이클은 무인화되어 있지
-                않다&rdquo;
+                &ldquo;무인화 매장인데 운영 사이클은 무인화되어 있지 않다&rdquo;
               </B>
               는 도메인 부조화를 직접 매장 방문 테스트 중 체감. JSON
               분리(임시방편)와 운영 매뉴얼 정비(코드 변경 없음)도 검토했지만,
@@ -212,18 +210,17 @@ export default function AICoachPortfolioPage() {
           }
           result={[
             <>
-              main bundle 압축 사이즈{" "}
-              <B>760 KB → 592 KB (22%↓, 168 KB 감소)</B> — raw 기준 2.49 MB →
-              1.96 MB (-530 KB)
+              main bundle 압축 사이즈 <B>760 KB → 592 KB (22%↓, 168 KB 감소)</B>{" "}
+              — raw 기준 2.49 MB → 1.96 MB (-530 KB)
             </>,
             "lesson note 1곳 차트가 모든 페이지 main bundle 비용에 전파되던 걸 사전 차단",
             "신규 차트 추가 시 chartCore.ts 한 파일 등록만으로 모든 사용처 자동 적용",
           ]}
           retrospective={
             <>
-              <B>알게 된 것</B> — 사용처가 한 곳뿐인 라이브러리라도 main bundle에
-              묶이면 전 페이지 비용. 도입 시점에 진입점 통제 안 하면 사후
-              마이그레이션 비용이 누적되는 영역.
+              <B>알게 된 것</B> — 사용처가 한 곳뿐인 라이브러리라도 main
+              bundle에 묶이면 전 페이지 비용. 도입 시점에 진입점 통제 안 하면
+              사후 마이그레이션 비용이 누적되는 영역.
             </>
           }
         />
@@ -233,12 +230,12 @@ export default function AICoachPortfolioPage() {
           title="contextIsolation 권한 분리 — 보안 + DX 동시 개선"
           body={
             <>
-              Electron 앱이 원격 호스팅 SPA URL을 <code>loadURL</code>하는
-              구조. <code>contextIsolation: false</code> +{" "}
+              Electron 앱이 원격 호스팅 SPA URL을 <code>loadURL</code>하는 구조.{" "}
+              <code>contextIsolation: false</code> +{" "}
               <code>nodeIntegration: true</code> 조합은 SPA 침해 시{" "}
               <code>require(&apos;child_process&apos;)</code>로 매장 PC에서 임의
-              명령 실행이 가능한 권한 노출 상태. CSP 헤더 강화(권한 노출 그대로)와 SPA 패키지
-              번들링(자동 업데이트 흐름과 충돌) 대신,{" "}
+              명령 실행이 가능한 권한 노출 상태. CSP 헤더 강화(권한 노출
+              그대로)와 SPA 패키지 번들링(자동 업데이트 흐름과 충돌) 대신,{" "}
               <B>contextBridge 화이트리스트 + 타입 통합</B>으로 전면 재설계. 6곳
               복붙되어 있던 타입 선언/초기화 블록을 <code>electron.d.ts</code>로
               통합하고 23곳 <code>ipcRenderer</code> 직접 호출을 새 API로 일괄
@@ -253,8 +250,8 @@ export default function AICoachPortfolioPage() {
               신규 IPC 등록 절차 <B>6곳 → 1곳</B>
             </>,
             <>
-              <code>contextIsolation: true</code> + 화이트리스트 API로 권한
-              노출 제거
+              <code>contextIsolation: true</code> + 화이트리스트 API로 권한 노출
+              제거
             </>,
           ]}
           retrospective={
@@ -270,12 +267,12 @@ export default function AICoachPortfolioPage() {
           title="다국어 동기화 — 정적 텍스트 치환을 넘어"
           body={
             <>
-              일본 진출 1호점 대응을 위해 다국어 지원 필요. i18next 정적 텍스트만
-              처리(UI는 일본어, AI는 한국어 → 일관성 깨짐)는 글로벌 매장 운영의
-              진정한 의미와 맞지 않아, <code>languageTypeCd</code>를 모든 서버
-              요청에 동행시켜 <B>AI 응답·Clova TTS까지 동기화</B>하는 구조 선택.
-              트레이드오프는 코칭 도중 언어 변경 시 이전 언어 음성이 TTS 큐에
-              잔존(실사용 흐름에서 발견) → 변경 직전{" "}
+              일본 진출 1호점 대응을 위해 다국어 지원 필요. i18next 정적
+              텍스트만 처리(UI는 일본어, AI는 한국어 → 일관성 깨짐)는 글로벌
+              매장 운영의 진정한 의미와 맞지 않아, <code>languageTypeCd</code>를
+              모든 서버 요청에 동행시켜 <B>AI 응답·Clova TTS까지 동기화</B>하는
+              구조 선택. 트레이드오프는 코칭 도중 언어 변경 시 이전 언어 음성이
+              TTS 큐에 잔존(실사용 흐름에서 발견) → 변경 직전{" "}
               <code>stopCurrentTTS</code>·<code>resetTTSSession</code> 강제 호출
               + 변경 가능 시점을 메인 진입 모달로 제한하는 UX 정책으로 해결.
             </>

@@ -57,7 +57,7 @@ export default function KaddieWebPortfolioPage() {
         <BulletList
           items={[
             "김캐디(무인 매장 170개+ / 누적 200만+ 다운로드)의 글로벌 진출 전략 첫 B2C 웹 — 해외 스크린골프·연습장 예약",
-            "회사 최초 해외 매장(미국 Dallas Royal Golf Zone) 진출 시 동반 도입",
+            "태국·필리핀·미국 3개국 매장에서 운영 — 해외 진출 초기부터 동반 도입",
             "6개 언어 다국어 지원 · 다국가 결제(Stripe)",
           ]}
         />
@@ -400,11 +400,11 @@ export default function KaddieWebPortfolioPage() {
         <SectionLabel>Result</SectionLabel>
         <BulletList
           items={[
-            "회사 최초 해외 매장(미국 Dallas Royal Golf Zone) 진출 시 동반 도입",
+            "회사 최초 해외 매출 달성 — 태국·필리핀·미국 매장 운영",
             "복합 조건 예약 충돌 검증을 시스템 레벨에서 원천 차단",
             "Stripe 결제 정합성 — 이중 상태 가드 + 정수 단위 전송으로 1센트 오차 제거",
             "6개 언어 다국어 자동 동기화 파이프라인 구축",
-            "초기 아키텍처 설계부터 런칭까지 단독 주도",
+            "초기 아키텍처 설계부터 핵심 기능 개발·런칭 주도",
           ]}
         />
       </section>
