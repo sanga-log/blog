@@ -51,6 +51,7 @@ export interface Snippet {
 
 const CODE_COLOR = "#1F1B14";
 const COMMENT_COLOR = "#8A7B57";
+const COMMENT_MARK = "📌"; // 단독 설명 주석 표시 (안내 개념)
 
 // 줄 안에서 주석(//) 시작 위치를 찾는다. 문자열·정규식 안의 //(예: "https://", /\//g)는
 // 오감지하지 않도록 따옴표 상태를 추적하고 \ : / 직후의 //는 건너뛴다.
@@ -79,7 +80,7 @@ function findCommentStart(line: string): number {
   return -1;
 }
 
-// 주석은 흐린 색으로, 코드 없이 //로 시작하는 단독 설명 주석에는 💡를 붙여 코드와 구분
+// 주석은 흐린 색으로, 코드 없이 //로 시작하는 단독 설명 주석은 슬래시를 떼고 안내 이모지로 대체
 function renderCodeLines(code: string): React.ReactNode[] {
   const lines = code.split("\n");
   return lines.map((line, index) => {
@@ -98,7 +99,7 @@ function renderCodeLines(code: string): React.ReactNode[] {
     const codePart = line.slice(0, commentStart);
     const isStandalone = codePart.trim() === "";
     const commentPart = isStandalone
-      ? line.slice(commentStart).replace(/^\/\/\s?/, "// 💡 ")
+      ? line.slice(commentStart).replace(/^\/\/\s?/, `${COMMENT_MARK} `)
       : line.slice(commentStart);
 
     return (
