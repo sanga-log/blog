@@ -49,6 +49,68 @@ export interface Snippet {
   highlight: React.ReactNode;
 }
 
+const CODE_COLOR = "#1F1B14";
+const COMMENT_COLOR = "#8A7B57";
+
+// 줄 안에서 주석(//) 시작 위치를 찾는다. 문자열·정규식 안의 //(예: "https://", /\//g)는
+// 오감지하지 않도록 따옴표 상태를 추적하고 \ : / 직후의 //는 건너뛴다.
+function findCommentStart(line: string): number {
+  let inString: string | null = null;
+  for (let i = 0; i < line.length - 1; i++) {
+    const char = line[i];
+    if (inString) {
+      if (char === "\\") {
+        i++;
+        continue;
+      }
+      if (char === inString) inString = null;
+      continue;
+    }
+    if (char === '"' || char === "'" || char === "`") {
+      inString = char;
+      continue;
+    }
+    if (char === "/" && line[i + 1] === "/") {
+      const prev = line[i - 1];
+      if (prev === "\\" || prev === ":" || prev === "/") continue;
+      return i;
+    }
+  }
+  return -1;
+}
+
+// 주석은 흐린 색으로, 코드 없이 //로 시작하는 단독 설명 주석에는 💡를 붙여 코드와 구분
+function renderCodeLines(code: string): React.ReactNode[] {
+  const lines = code.split("\n");
+  return lines.map((line, index) => {
+    const newline = index < lines.length - 1 ? "\n" : null;
+    const commentStart = findCommentStart(line);
+
+    if (commentStart === -1) {
+      return (
+        <span key={index}>
+          {line}
+          {newline}
+        </span>
+      );
+    }
+
+    const codePart = line.slice(0, commentStart);
+    const isStandalone = codePart.trim() === "";
+    const commentPart = isStandalone
+      ? line.slice(commentStart).replace(/^\/\/\s?/, "// 💡 ")
+      : line.slice(commentStart);
+
+    return (
+      <span key={index}>
+        {codePart}
+        <span style={{ color: COMMENT_COLOR }}>{commentPart}</span>
+        {newline}
+      </span>
+    );
+  });
+}
+
 export function CodeSnippet({ filename, code, highlight }: Snippet) {
   return (
     <div className="mt-5">
@@ -64,14 +126,14 @@ export function CodeSnippet({ filename, code, highlight }: Snippet) {
           fontFamily: MONO_FONT,
           background: "#ECE5D0",
           border: "1px solid #D6CCB8",
-          color: "#1F1B14",
+          color: CODE_COLOR,
         }}
       >
         <code
           className="whitespace-pre"
-          style={{ color: "#1F1B14", background: "transparent" }}
+          style={{ color: CODE_COLOR, background: "transparent" }}
         >
-          {code}
+          {renderCodeLines(code)}
         </code>
       </pre>
       <p className="text-xs leading-[1.65] text-gray-600 mt-2.5 italic">
