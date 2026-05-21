@@ -6,15 +6,13 @@ import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description:
-    "프로젝트 의사결정·트레이드오프·회고를 ADR 포맷으로 기록.",
+  description: "프로젝트 의사결정·트레이드오프·회고를 ADR 포맷으로 기록.",
   alternates: {
     canonical: `${SITE_URL}/portfolio`,
   },
   openGraph: {
     title: "Portfolio",
-    description:
-      "프로젝트 의사결정·트레이드오프·회고를 ADR 포맷으로 기록.",
+    description: "프로젝트 의사결정·트레이드오프·회고를 ADR 포맷으로 기록.",
     url: `${SITE_URL}/portfolio`,
   },
 };
@@ -32,6 +30,16 @@ interface Project {
 
 const projects: Project[] = [
   {
+    slug: "kaddie-web",
+    name: "Kaddie Web — 글로벌 골프장 예약 B2C 웹 서비스",
+    company: "김캐디",
+    period: "2025.09 — 현재",
+    summary:
+      "해외 스크린골프·연습장 예약 웹. 회사 최초 해외 매출을 만든 서비스로, 태국·필리핀·미국 매장에서 운영 중.",
+    tags: ["React", "TypeScript", "Stripe", "Docker", "AWS ECS"],
+    video: "/videos/kaddie.mp4",
+  },
+  {
     slug: "ai-coach",
     name: "AI Coach — AI 기반 골프 스윙 분석 데스크톱 앱",
     company: "김캐디",
@@ -42,14 +50,14 @@ const projects: Project[] = [
     video: "/videos/ai-coach.mp4",
   },
   {
-    slug: "kaddie-web",
-    name: "Kaddie Web — 글로벌 골프장 예약 B2C 웹 서비스",
-    company: "김캐디",
-    period: "2025.09 — 현재",
+    slug: "smartscore-web",
+    name: "국내 공식 웹사이트 개편",
+    company: "스마트스코어",
+    period: "2025.02 — 2025.06",
     summary:
-      "해외 스크린골프·연습장 예약 웹. 회사 최초 해외 매출을 만든 서비스로, 태국·필리핀·미국 매장에서 운영 중.",
-    tags: ["React", "TypeScript", "Stripe", "Docker", "AWS ECS"],
-    video: "/videos/kaddie.mp4",
+      "국내 1위 골프 O2O 플랫폼 국내 공식 웹사이트 전면 개편. LCP 6.6s→0.9s 성능 최적화, 도메인 이전 SEO 전략, Zod 기반 폼 검증 설계.",
+    tags: ["Vue3", "TypeScript", "Vite", "Zod", "i18n"],
+    video: "/videos/smartscore-web.mp4",
   },
   {
     slug: "mobile-ads",
